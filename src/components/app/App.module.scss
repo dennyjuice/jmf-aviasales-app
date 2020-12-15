@@ -1,9 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
 $bg-color: #F3F7FA;
+$widthContainer: 960-206px;
+$fontSize: 12px;
+$primaryColor: #2196F3;
+$bgBlocksColor:  #FFFFFF;
 
 body {
   background-color: $bg-color;
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: $fontSize;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #4a4a4a;
 }
 
-.app {
-  padding: 0;
+.container {
+  width: $widthContainer;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 33% 1fr;
+  grid-gap: 0 20px;
+  grid-template-areas:
+    "header header"
+    "filter main"
+    ". main";
+}
+
+header {
+  grid-area: header;
+  text-align: center;
+  padding: 50px 0;
+}
+
+.filter {
+  grid-area: filter;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background: $bgBlocksColor;
+  & label {
+    text-transform: none;
+    font-weight: normal;
+  }
+}
+
+main {
+  grid-area: main;
+}
+
+nav {
+  margin-bottom: 20px;
+  & button {
+    width: 50%;
+    height: 50px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: $fontSize;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: none;
+    background-color: $primaryColor;
+    color: #ffffff;
+    cursor: pointer;
+  }
+}
+
+.ticket {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  padding: 20px;
+  background: $bgBlocksColor;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.ticket-header,
+.ticket-direction {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ticket-header {
+
 }
