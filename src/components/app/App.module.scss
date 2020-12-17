@@ -1,11 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
 
-$bg-color: #F3F7FA;
-$widthContainer: 960-206px;
-$fontSize: 12px;
-$primaryColor: #2196F3;
-$bgBlocksColor:  #FFFFFF;
-$textColor: #4A4A4A;
+@import "../../helpers/_variables.scss";
 
 body {
   background-color: $bg-color;
@@ -25,10 +20,10 @@ ul {
 }
 
 .container {
-  width: $widthContainer;
+  max-width: $widthContainer;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 33% 1fr;
+  grid-template-columns: 31% 1fr;
   grid-gap: 0 20px;
   grid-template-areas:
     "header header"
@@ -39,54 +34,7 @@ ul {
 header {
   grid-area: header;
   text-align: center;
-  padding: 50px 0;
-}
-
-.filter {
-  grid-area: filter;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  background: $bgBlocksColor;
-  & li {
-    list-style-type: none;
-    margin-top: 16px;
-  }
-  & label {
-    display: inline-flex;
-    align-items: center;
-    text-transform: none;
-    font-weight: normal;
-    letter-spacing: normal;
-  }
-  & input {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    margin: 0;
-    opacity: 0;
-    &+label::before {
-      content: '';
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      margin-right: 10px;
-      flex-shrink: 0;
-      flex-grow: 0;
-      border: 1px solid #9ABBCE;
-      border-radius: 2px;
-      cursor: pointer;
-    }
-  }
-
-  & input:checked+label::before {
-    border-color: $primaryColor;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M4.28571 8L0 4.16123L1.20857 3.0787L4.28571 5.82726L10.7914 0L12 1.09021L4.28571 8Z' fill='%232196F3'/%3e%3c/svg%3e ");
-    background-repeat: no-repeat;
-    background-position: center;
-  }
+  padding: 50px 0 27px 0;
 }
 
 main {
@@ -102,66 +50,33 @@ main {
     font-size: $fontSize;
     font-weight: 600;
     text-transform: uppercase;
+    outline: none;
+    color: $textColor;
+    background-color: $bgBlocksColor;
+    border: 1px solid #DFE5EC;
     cursor: pointer;
   }
-  & button:first-child {
+  & button.active {
     border: none;
     background-color: $primaryColor;
     color: #ffffff;
+  }
+  & button:first-child {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
   }
   & button:last-child {
-    color: $textColor;
-    background-color: $bgBlocksColor;
-    border: 1px solid #DFE5EC;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
   }
 }
 
-.ticket {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-  padding: 20px;
-  background: $bgBlocksColor;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  list-style-type: none;
-}
-
-.ticket-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  & div {
-    flex-basis: 0;
-    flex-grow: 1;
-  }
-  & .price {
-    flex-grow: 2;
-    font-size: 24px;
-    line-height: 0;
-    color: $primaryColor;
-  }
-  & .company-logo {
-    display: flex;
-  }
-}
-
-.ticket-info-block_head {
-  font-size: 11px;
-  color: #A0B0B9;
-}
-
-.ticket-direction {
-  display: flex;
-  margin-bottom: 10px;
-  & div {
-    flex-basis: 0;
-    flex-grow: 1;
-    display: inline-block;
+@media screen and (max-width: $widthContainer) {
+  .container {
+    padding: 0 1em;
+    grid-template-areas:
+    "header header"
+    "filter filter"
+    "main main";
   }
 }
