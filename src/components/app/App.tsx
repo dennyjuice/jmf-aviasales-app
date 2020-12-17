@@ -10,31 +10,36 @@ const App = () => (
     </header>
     <section className={classes.filter}>
       <span className={classes['filter-header']}>Количество пересадок</span>
-      <label>
-        <input type="checkbox" name="transfer" value="all" />
-        Все
-      </label>
-      <label>
-        <input type="checkbox" name="transfer" value="none" />
-        Без пересадок
-      </label>
-      <label>
-        <input type="checkbox" name="transfer" value="1" />1 пересадка
-      </label>
-      <label>
-        <input type="checkbox" name="transfer" value="2" />2 пересадки
-      </label>
-      <label>
-        <input type="checkbox" name="transfer" value="3" />3 пересадки
-      </label>
+      <ul>
+        <li>
+          <input type="checkbox" name="transfer" value="all" />
+          <label htmlFor="transfer"> Все</label>
+        </li>
+        <li>
+          <input type="checkbox" name="transfer" value="none" defaultChecked />
+          <label htmlFor="transfer"> Без пересадок</label>
+        </li>
+        <li>
+          <input type="checkbox" name="transfer" value="1" />
+          <label htmlFor="transfer">1 пересадка</label>
+        </li>
+        <li>
+          <input type="checkbox" name="transfer" value="2" />
+          <label htmlFor="transfer">2 пересадки</label>
+        </li>
+        <li>
+          <input type="checkbox" name="transfer" value="3" />
+          <label htmlFor="transfer">3 пересадки</label>
+        </li>
+      </ul>
     </section>
     <main>
-      <nav>
+      <div className={classes.tabs}>
         <button type="button">Самый дешевый</button>
         <button type="button">Самый быстрый</button>
-      </nav>
-      <div className={classes.tickets}>
-        <div className={classes.ticket}>
+      </div>
+      <ul className={classes.tickets}>
+        <li className={classes.ticket}>
           <div className={classes['ticket-header']}>
             <div className={classes.price}>13 400 Р</div>
             <div className={classes['company-logo']}>
@@ -77,8 +82,8 @@ const App = () => (
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </li>
+      </ul>
     </main>
   </div>
 );

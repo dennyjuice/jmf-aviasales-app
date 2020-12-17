@@ -5,6 +5,7 @@ $widthContainer: 960-206px;
 $fontSize: 12px;
 $primaryColor: #2196F3;
 $bgBlocksColor:  #FFFFFF;
+$textColor: #4A4A4A;
 
 body {
   background-color: $bg-color;
@@ -13,8 +14,14 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: $fontSize;
   font-weight: 600;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
-  color: #4a4a4a;
+  color: $textColor;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
 }
 
 .container {
@@ -43,9 +50,42 @@ header {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   background: $bgBlocksColor;
+  & li {
+    list-style-type: none;
+    margin-top: 16px;
+  }
   & label {
+    display: inline-flex;
+    align-items: center;
     text-transform: none;
     font-weight: normal;
+    letter-spacing: normal;
+  }
+  & input {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    opacity: 0;
+    &+label::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+      flex-shrink: 0;
+      flex-grow: 0;
+      border: 1px solid #9ABBCE;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+  }
+
+  & input:checked+label::before {
+    border-color: $primaryColor;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M4.28571 8L0 4.16123L1.20857 3.0787L4.28571 5.82726L10.7914 0L12 1.09021L4.28571 8Z' fill='%232196F3'/%3e%3c/svg%3e ");
+    background-repeat: no-repeat;
+    background-position: center;
   }
 }
 
@@ -53,7 +93,7 @@ main {
   grid-area: main;
 }
 
-nav {
+.tabs {
   margin-bottom: 20px;
   & button {
     width: 50%;
@@ -62,10 +102,21 @@ nav {
     font-size: $fontSize;
     font-weight: 600;
     text-transform: uppercase;
+    cursor: pointer;
+  }
+  & button:first-child {
     border: none;
     background-color: $primaryColor;
     color: #ffffff;
-    cursor: pointer;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+  & button:last-child {
+    color: $textColor;
+    background-color: $bgBlocksColor;
+    border: 1px solid #DFE5EC;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
   }
 }
 
@@ -78,14 +129,39 @@ nav {
   background: $bgBlocksColor;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-}
-
-.ticket-header,
-.ticket-direction {
-  display: flex;
-  justify-content: space-between;
+  list-style-type: none;
 }
 
 .ticket-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  & div {
+    flex-basis: 0;
+    flex-grow: 1;
+  }
+  & .price {
+    flex-grow: 2;
+    font-size: 24px;
+    line-height: 0;
+    color: $primaryColor;
+  }
+  & .company-logo {
+    display: flex;
+  }
+}
 
+.ticket-info-block_head {
+  font-size: 11px;
+  color: #A0B0B9;
+}
+
+.ticket-direction {
+  display: flex;
+  margin-bottom: 10px;
+  & div {
+    flex-basis: 0;
+    flex-grow: 1;
+    display: inline-block;
+  }
 }
