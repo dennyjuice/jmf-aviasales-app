@@ -6,7 +6,7 @@ import TicketsList from '../tickets-list';
 import classes from './App.module.scss';
 import logo from './Logo.svg';
 
-const App = (): JSX.Element => (
+const App: React.FC = () => (
   <div className={classes.container}>
     <header>
       <img src={logo} className={classes.logo} alt="logo" />

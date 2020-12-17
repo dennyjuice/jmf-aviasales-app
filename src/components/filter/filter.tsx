@@ -2,7 +2,7 @@ import React from 'react';
 
 import classes from './filter.module.scss';
 
-const Filter = (): JSX.Element => (
+const Filter: React.FC = () => (
   <section className={classes.filter}>
     <span className={classes['filter-header']}>Количество пересадок</span>
     <ul>
