@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Filter from '../filter';
-import TicketsList from '../tickets-list';
+import VisibleTickets from '../../containers/visible-tickets';
 
 import classes from './App.module.scss';
 import logo from './Logo.svg';
@@ -19,7 +19,7 @@ const App: React.FC = () => (
         </button>
         <button type="button">Самый быстрый</button>
       </div>
-      <TicketsList />
+      <VisibleTickets />
     </main>
   </div>
 );

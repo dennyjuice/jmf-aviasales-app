@@ -2,15 +2,17 @@ import React from 'react';
 
 import Ticket from '../ticket';
 
+import { TicketsType } from '../../helpers/types';
+import newId from '../../helpers/new-id';
+
 import classes from './tickets-list.module.scss';
 
-const TicketsList: React.FC = () => (
+const TicketsList = ({ tickets }: TicketsType): JSX.Element => (
   <ul className={classes.tickets}>
-    <Ticket price="13 400" key={1} />
-    <Ticket price="16 900" key={2} />
-    <Ticket price="6 300" key={3} />
-    <Ticket price="34 900" key={4} />
-    <Ticket price="11 200" key={5} />
+    {tickets.map((ticket) => (
+      // @ts-ignore
+      <Ticket data={ticket} key={newId('tck')} />
+    ))}
   </ul>
 );
 
