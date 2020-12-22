@@ -1,0 +1,62 @@
+@import "../../helpers/_variables.scss";
+
+.filter {
+  grid-area: filter;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background: $bgBlocksColor;
+  & span {
+    margin: 20px 0 8px 20px;
+  }
+  & li {
+    display: flex;
+    font-size: 13px;
+    list-style-type: none;
+    height: 40px;
+    padding: 0 20px;
+    &:hover {
+      background-color: #F1FCFF;
+    }
+  }
+  & label {
+    display: inline-flex;
+    align-items: center;
+    text-transform: none;
+    font-weight: normal;
+    letter-spacing: normal;
+    cursor: pointer;
+  }
+  & input {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+    &+label::before {
+      content: '';
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      margin-right: 10px;
+      flex-shrink: 0;
+      flex-grow: 0;
+      border: 1px solid #9ABBCE;
+      border-radius: 2px;
+    }
+  }
+
+  & input:checked+label::before {
+    border-color: $primaryColor;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M4.28571 8L0 4.16123L1.20857 3.0787L4.28571 5.82726L10.7914 0L12 1.09021L4.28571 8Z' fill='%232196F3'/%3e%3c/svg%3e ");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+@media screen and (max-width: $widthContainer) {
+  .filter ul {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

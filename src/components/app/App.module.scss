@@ -1,9 +1,82 @@
-$bg-color: #F3F7FA;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
+@import "../../helpers/_variables.scss";
 
 body {
   background-color: $bg-color;
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: $fontSize;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: $textColor;
 }
 
-.app {
+ul {
   padding: 0;
+  margin: 0;
+}
+
+.container {
+  max-width: $widthContainer;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 31% 1fr;
+  grid-gap: 0 20px;
+  grid-template-areas:
+    "header header"
+    "filter main"
+    ". main";
+}
+
+header {
+  grid-area: header;
+  text-align: center;
+  padding: 50px 0 27px 0;
+}
+
+main {
+  grid-area: main;
+}
+
+.tabs {
+  margin-bottom: 20px;
+  & button {
+    width: 50%;
+    height: 50px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: $fontSize;
+    font-weight: 600;
+    text-transform: uppercase;
+    outline: none;
+    color: $textColor;
+    background-color: $bgBlocksColor;
+    border: 1px solid #DFE5EC;
+    cursor: pointer;
+  }
+  & button.active {
+    border: none;
+    background-color: $primaryColor;
+    color: #ffffff;
+  }
+  & button:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+  & button:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+}
+
+@media screen and (max-width: $widthContainer) {
+  .container {
+    padding: 0 1em;
+    grid-template-areas:
+    "header header"
+    "filter filter"
+    "main main";
+  }
 }
