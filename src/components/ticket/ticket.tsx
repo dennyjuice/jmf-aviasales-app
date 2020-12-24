@@ -5,7 +5,7 @@ import newId from '../../helpers/new-id';
 
 import classes from './ticket.module.scss';
 
-const Ticket = ({ data }: any): JSX.Element => (
+const Ticket: React.FC = ({ data }: any) => (
   <li className={classes.ticket}>
     <div className={classes['ticket-header']}>
       <div className={classes.price}>{data.price} Р</div>

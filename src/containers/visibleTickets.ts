@@ -10,12 +10,13 @@ const getVisibleTickets = (tickets: Array<TicketType>, filter: string) => {
     case StopsFilters.SHOW_ALL:
       return tickets.slice(0, 5);
     default:
-      throw new Error(`Unknown filter: ${filter}`);
+      return tickets.slice(0, 5);
+    // throw new Error(`Unknown filter: ${filter}`);
   }
 };
 
 const mapStateToProps = (state: StateType) => ({
-  tickets: getVisibleTickets(state.tickets, state.stopsFilter),
+  tickets: getVisibleTickets(state.tickets, state.stopsFilter.filter),
 });
 
 export default connect(mapStateToProps)(TicketsList);

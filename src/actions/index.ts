@@ -1,6 +1,7 @@
-export const setStopsFilter = (filter: string) => ({
+export const setStopsFilter = (value: string, filter: string) => ({
   type: 'SET_STOPS_FILTER',
   filter,
+  value,
 });
 
 export const StopsFilters = {

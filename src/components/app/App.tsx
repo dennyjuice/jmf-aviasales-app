@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Filter from '../filter';
-import VisibleTickets from '../../containers/visible-tickets';
+import FilterContainer from '../../containers/filterContainer';
+import VisibleTickets from '../../containers/visibleTickets';
 
 import classes from './App.module.scss';
 import logo from './Logo.svg';
@@ -11,7 +11,7 @@ const App: React.FC = () => (
     <header>
       <img src={logo} className={classes.logo} alt="logo" />
     </header>
-    <Filter />
+    <FilterContainer />
     <main>
       <div className={classes.tabs}>
         <button type="button" className={classes.active}>

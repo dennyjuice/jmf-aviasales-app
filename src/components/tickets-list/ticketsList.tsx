@@ -2,14 +2,14 @@ import React from 'react';
 
 import Ticket from '../ticket';
 
-import { TicketsType } from '../../helpers/types';
+import { TicketsType, TicketType } from '../../helpers/types';
 import newId from '../../helpers/new-id';
 
-import classes from './tickets-list.module.scss';
+import classes from './ticketsList.module.scss';
 
 const TicketsList = ({ tickets }: TicketsType): JSX.Element => (
   <ul className={classes.tickets}>
-    {tickets.map((ticket) => (
+    {tickets.map((ticket: TicketType) => (
       // @ts-ignore
       <Ticket data={ticket} key={newId('tck')} />
     ))}

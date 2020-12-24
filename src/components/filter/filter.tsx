@@ -1,33 +1,33 @@
 import React from 'react';
 
-import classes from './filter.module.scss';
+import { IFilterLink } from '../../helpers/types';
 
-const Filter: React.FC = () => (
-  <section className={classes.filter}>
-    <span className={classes['filter-header']}>Количество пересадок</span>
-    <ul>
-      <li>
-        <input type="checkbox" id="all" name="transfer" value="all" />
-        <label htmlFor="all"> Все</label>
-      </li>
-      <li>
-        <input type="checkbox" id="none" name="transfer" value="none" />
-        <label htmlFor="none"> Без пересадок</label>
-      </li>
-      <li>
-        <input type="checkbox" id="one" name="transfer" value="1" />
-        <label htmlFor="one">1 пересадка</label>
-      </li>
-      <li>
-        <input type="checkbox" id="two" name="transfer" value="2" />
-        <label htmlFor="two">2 пересадки</label>
-      </li>
-      <li>
-        <input type="checkbox" id="three" name="transfer" value="3" />
-        <label htmlFor="three">3 пересадки</label>
-      </li>
-    </ul>
-  </section>
-);
+import classes from './filter.module.scss';
+// import { StopsFilters } from '../../actions';
+
+const Filter = ({ checkboxes, onChange }: any) => {
+  // eslint-disable-next-line no-console
+  console.log(checkboxes);
+  const fLinksElements = checkboxes.map((link: IFilterLink) => (
+    <li key={link.value}>
+      <input
+        type="checkbox"
+        id={link.value}
+        name="transfer"
+        value={link.value}
+        checked={link.isChecked}
+        onChange={() => onChange(link.value, link.filterData)}
+      />
+      <label htmlFor={link.value}> {link.label}</label>
+    </li>
+  ));
+
+  return (
+    <section className={classes.filter}>
+      <span className={classes['filter-header']}>Количество пересадок</span>
+      <ul>{fLinksElements}</ul>
+    </section>
+  );
+};
 
 export default Filter;

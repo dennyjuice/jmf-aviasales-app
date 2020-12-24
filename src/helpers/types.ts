@@ -1,6 +1,7 @@
 export type Action = {
   type: string;
-  filter?: string;
+  filter: string;
+  value: string;
 };
 
 export type TicketsType = {
@@ -21,7 +22,19 @@ export type TicketSegmentType = {
   duration: number;
 };
 
+export type FilterType = {
+  checkboxes: Array<any>;
+  filter: string;
+};
+
 export type StateType = {
   tickets: Array<TicketType>;
-  stopsFilter: string;
+  stopsFilter: FilterType;
+};
+
+export type IFilterLink = {
+  label: string;
+  value: string;
+  filterData: string;
+  isChecked: boolean;
 };
