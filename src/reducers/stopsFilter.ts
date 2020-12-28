@@ -26,13 +26,25 @@ const StopsFilter = (state = defaultState, action: Action) => {
     case 'SET_STOPS_FILTER':
       // eslint-disable-next-line no-case-declarations
       const chbx = state.checkboxes;
-      if (action.value === chbx[CheckBoxes.all].value) {
+
+      if (action.value === 'all') {
         const newCheckboxes = chbx.map((checkbox) => {
           if (!chbx[CheckBoxes.all].isChecked) {
             return { ...checkbox, isChecked: true };
           }
           return { ...checkbox, isChecked: false };
         });
+        return { ...state, checkboxes: newCheckboxes, filter: action.filter };
+      }
+
+      if (action.value === 'none' || action.value === 'one' || action.value === 'two' || action.value === 'three') {
+        const newCheckboxes = chbx.map((checkbox) => {
+          if (checkbox.value === action.value) {
+            return { ...checkbox, isChecked: !checkbox.isChecked };
+          }
+          return { ...checkbox };
+        });
+
         return { ...state, checkboxes: newCheckboxes, filter: action.filter };
       }
 

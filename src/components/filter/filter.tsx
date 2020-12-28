@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 
 import { IFilterLink } from '../../helpers/types';
 
@@ -6,8 +6,10 @@ import classes from './filter.module.scss';
 // import { StopsFilters } from '../../actions';
 
 const Filter = ({ checkboxes, onChange }: any) => {
-  // eslint-disable-next-line no-console
-  console.log(checkboxes);
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onChange(event.target.value, event.target.dataset.filter);
+  };
+
   const fLinksElements = checkboxes.map((link: IFilterLink) => (
     <li key={link.value}>
       <input
@@ -16,7 +18,8 @@ const Filter = ({ checkboxes, onChange }: any) => {
         name="transfer"
         value={link.value}
         checked={link.isChecked}
-        onChange={() => onChange(link.value, link.filterData)}
+        data-filter={link.filterData}
+        onChange={handleChange}
       />
       <label htmlFor={link.value}> {link.label}</label>
     </li>
