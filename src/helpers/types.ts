@@ -1,40 +1,41 @@
-export type Action = {
+export interface Action {
   type: string;
   filter: string;
   value: string;
-};
+  checked: boolean;
+}
 
-export type TicketsType = {
+export interface TicketsType {
   tickets: Array<TicketType>;
-};
+}
 
-export type TicketType = {
+export interface TicketType {
   price: number;
   carrier: string;
   segments: Array<TicketSegmentType>;
-};
+}
 
-export type TicketSegmentType = {
+export interface TicketSegmentType {
   origin: string;
   destination: string;
   date: string;
   stops: Array<string>;
   duration: number;
-};
+}
 
-export type FilterType = {
+export interface FilterType {
   checkboxes: Array<any>;
   filter: string;
-};
+}
 
-export type StateType = {
+export interface StateType {
   tickets: Array<TicketType>;
   stopsFilter: FilterType;
-};
+}
 
-export type IFilterLink = {
+export interface IFilterLink {
   label: string;
   value: string;
   filterData: string;
   isChecked: boolean;
-};
+}

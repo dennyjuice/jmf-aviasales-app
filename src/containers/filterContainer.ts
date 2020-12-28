@@ -8,7 +8,8 @@ const mapStateToProps = (state: StateType) => ({
 });
 
 const mapDispatchToProps = (dispatch: Function) => ({
-  onChange: (value: string, filterData: string) => dispatch(setStopsFilter(value, filterData)),
+  onChange: (value: string, checked: boolean, filterData: string) =>
+    dispatch(setStopsFilter(value, checked, filterData)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

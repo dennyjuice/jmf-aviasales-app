@@ -3,52 +3,49 @@ import { StopsFilters } from '../actions';
 import { Action } from '../helpers/types';
 
 enum CheckBoxes {
-  'all',
-  'none',
-  'one',
-  'two',
-  'three',
+  ALL = 'all',
+  NONE = 'none',
+  ONE = 'one',
+  TWO = 'two',
+  THREE = 'three',
 }
 
 const defaultState = {
   checkboxes: [
-    { value: 'all', label: 'Все', filterData: StopsFilters.SHOW_ALL, isChecked: false },
-    { value: 'none', label: 'Без пересадок', filterData: StopsFilters.SHOW_NO_STOPS, isChecked: true },
-    { value: 'one', label: '1 пересадка', filterData: StopsFilters.SHOW_ONE_STOP, isChecked: false },
-    { value: 'two', label: '2 пересадки', filterData: StopsFilters.SHOW_TWO_STOPS, isChecked: false },
-    { value: 'three', label: '3 пересадки', filterData: StopsFilters.SHOW_THREE_STOPS, isChecked: false },
+    { value: CheckBoxes.ALL, label: 'Все', filterData: StopsFilters.SHOW_ALL, isChecked: false },
+    { value: CheckBoxes.NONE, label: 'Без пересадок', filterData: StopsFilters.SHOW_NO_STOPS, isChecked: false },
+    { value: CheckBoxes.ONE, label: '1 пересадка', filterData: StopsFilters.SHOW_ONE_STOP, isChecked: false },
+    { value: CheckBoxes.TWO, label: '2 пересадки', filterData: StopsFilters.SHOW_TWO_STOPS, isChecked: false },
+    { value: CheckBoxes.THREE, label: '3 пересадки', filterData: StopsFilters.SHOW_THREE_STOPS, isChecked: false },
   ],
   filter: StopsFilters.SHOW_ALL,
+};
+
+const checkboxCheck = (checkboxes: Array<any>, value?: string, checked?: boolean): Array<any> => {
+  if (value === CheckBoxes.ALL) {
+    return checkboxes.map((checkbox) => ({ ...checkbox, isChecked: checked }));
+  }
+
+  const checkedArr = checkboxes.map((checkbox) => {
+    if (value === checkbox.value) {
+      return { ...checkbox, isChecked: checked };
+    }
+    return { ...checkbox };
+  });
+
+  checkedArr[0].isChecked = checkedArr.filter((el) => el.isChecked && el.value !== CheckBoxes.ALL).length === 4;
+
+  return checkedArr;
 };
 
 const StopsFilter = (state = defaultState, action: Action) => {
   switch (action.type) {
     case 'SET_STOPS_FILTER':
-      // eslint-disable-next-line no-case-declarations
-      const chbx = state.checkboxes;
-
-      if (action.value === 'all') {
-        const newCheckboxes = chbx.map((checkbox) => {
-          if (!chbx[CheckBoxes.all].isChecked) {
-            return { ...checkbox, isChecked: true };
-          }
-          return { ...checkbox, isChecked: false };
-        });
-        return { ...state, checkboxes: newCheckboxes, filter: action.filter };
-      }
-
-      if (action.value === 'none' || action.value === 'one' || action.value === 'two' || action.value === 'three') {
-        const newCheckboxes = chbx.map((checkbox) => {
-          if (checkbox.value === action.value) {
-            return { ...checkbox, isChecked: !checkbox.isChecked };
-          }
-          return { ...checkbox };
-        });
-
-        return { ...state, checkboxes: newCheckboxes, filter: action.filter };
-      }
-
-      return { ...state, filter: action.filter };
+      return {
+        ...state,
+        checkboxes: checkboxCheck(state.checkboxes, action.value, action.checked),
+        filter: action.filter,
+      };
     default:
       return state;
   }

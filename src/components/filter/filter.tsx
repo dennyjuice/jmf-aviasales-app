@@ -7,7 +7,7 @@ import classes from './filter.module.scss';
 
 const Filter = ({ checkboxes, onChange }: any) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    onChange(event.target.value, event.target.dataset.filter);
+    onChange(event.target.value, event.target.checked, event.target.dataset.filter);
   };
 
   const fLinksElements = checkboxes.map((link: IFilterLink) => (
