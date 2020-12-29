@@ -1,8 +1,15 @@
-export interface Action {
+export interface IAction {
   type: string;
+}
+
+export interface IFilterAction extends IAction {
   filter: string;
   value: string;
   checked: boolean;
+}
+
+export interface ISortAction extends IAction {
+  sort: string;
 }
 
 export interface ITickets {
@@ -31,6 +38,7 @@ export interface IFilter {
 export interface IState {
   tickets: Array<IOneTicket>;
   stopsFilter: IFilter;
+  sortTickets: string;
 }
 
 export interface IFilterLink {

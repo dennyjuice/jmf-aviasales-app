@@ -2,6 +2,7 @@ import React from 'react';
 
 import FilterContainer from '../../containers/filterContainer';
 import VisibleTickets from '../../containers/visibleTickets';
+import SortContainer from '../../containers/sortContainer';
 
 import classes from './App.module.scss';
 import logo from './Logo.svg';
@@ -13,12 +14,7 @@ const App: React.FC = () => (
     </header>
     <FilterContainer />
     <main>
-      <div className={classes.tabs}>
-        <button type="button" className={classes.active}>
-          Самый дешевый
-        </button>
-        <button type="button">Самый быстрый</button>
-      </div>
+      <SortContainer />
       <VisibleTickets />
     </main>
   </div>
