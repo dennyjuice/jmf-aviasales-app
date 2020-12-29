@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import { setStopsFilter } from '../actions';
 import Filter from '../components/filter';
-import { StateType } from '../helpers/types';
+import { IState } from '../helpers/types';
 
-const mapStateToProps = (state: StateType) => ({
+const mapStateToProps = (state: IState) => ({
   checkboxes: state.stopsFilter.checkboxes,
 });
 

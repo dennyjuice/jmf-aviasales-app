@@ -3,9 +3,9 @@ import TicketsList from '../components/tickets-list';
 
 import { StopsFilters } from '../actions';
 
-import { TicketType, StateType } from '../helpers/types';
+import { IOneTicket, IState } from '../helpers/types';
 
-const getVisibleTickets = (tickets: Array<TicketType>, filter: string) => {
+const getVisibleTickets = (tickets: Array<IOneTicket>, filter: string) => {
   switch (filter) {
     case StopsFilters.SHOW_ALL:
       return tickets.slice(0, 5);
@@ -15,7 +15,7 @@ const getVisibleTickets = (tickets: Array<TicketType>, filter: string) => {
   }
 };
 
-const mapStateToProps = (state: StateType) => ({
+const mapStateToProps = (state: IState) => ({
   tickets: getVisibleTickets(state.tickets, state.stopsFilter.filter),
 });
 

@@ -5,17 +5,17 @@ export interface Action {
   checked: boolean;
 }
 
-export interface TicketsType {
-  tickets: Array<TicketType>;
+export interface ITickets {
+  tickets: Array<IOneTicket>;
 }
 
-export interface TicketType {
+export interface IOneTicket {
   price: number;
   carrier: string;
-  segments: Array<TicketSegmentType>;
+  segments: Array<ITicketSegment>;
 }
 
-export interface TicketSegmentType {
+export interface ITicketSegment {
   origin: string;
   destination: string;
   date: string;
@@ -23,14 +23,14 @@ export interface TicketSegmentType {
   duration: number;
 }
 
-export interface FilterType {
+export interface IFilter {
   checkboxes: Array<any>;
   filter: string;
 }
 
-export interface StateType {
-  tickets: Array<TicketType>;
-  stopsFilter: FilterType;
+export interface IState {
+  tickets: Array<IOneTicket>;
+  stopsFilter: IFilter;
 }
 
 export interface IFilterLink {
