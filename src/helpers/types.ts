@@ -2,6 +2,10 @@ export interface IAction {
   type: string;
 }
 
+export interface IRequestAction extends IAction {
+  tickets: ITickets;
+}
+
 export interface IFilterAction extends IAction {
   filter: string;
   value: string;

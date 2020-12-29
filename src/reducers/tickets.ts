@@ -1,9 +1,9 @@
-import ticketsData from '../tickets.json';
+import { IRequestAction } from '../helpers/types';
 
-import { IFilterAction } from '../helpers/types';
-
-const tickets = (state = ticketsData.tickets, action: IFilterAction) => {
+const tickets = (state = [], action: IRequestAction) => {
   switch (action.type) {
+    case 'RECEIVE_TICKETS':
+      return action.tickets;
     default:
       return state;
   }
