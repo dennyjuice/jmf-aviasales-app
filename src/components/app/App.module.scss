@@ -41,36 +41,6 @@ main {
   grid-area: main;
 }
 
-.tabs {
-  margin-bottom: 20px;
-  & button {
-    width: 50%;
-    height: 50px;
-    font-family: 'Open Sans', sans-serif;
-    font-size: $fontSize;
-    font-weight: 600;
-    text-transform: uppercase;
-    outline: none;
-    color: $textColor;
-    background-color: $bgBlocksColor;
-    border: 1px solid #DFE5EC;
-    cursor: pointer;
-  }
-  & button.active {
-    border: none;
-    background-color: $primaryColor;
-    color: #ffffff;
-  }
-  & button:first-child {
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-  }
-  & button:last-child {
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-  }
-}
-
 @media screen and (max-width: $widthContainer) {
   .container {
     padding: 0 1em;
