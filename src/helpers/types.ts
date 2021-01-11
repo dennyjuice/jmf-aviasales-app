@@ -2,6 +2,10 @@ export interface IAction {
   type: string;
 }
 
+export interface IRequestAction extends IAction {
+  tickets: ITickets;
+}
+
 export interface IFilterAction extends IAction {
   filter: string;
   value: string;
@@ -14,6 +18,7 @@ export interface ISortAction extends IAction {
 
 export interface ITickets {
   tickets: Array<IOneTicket>;
+  receiveTickets: Function;
 }
 
 export interface IOneTicket {

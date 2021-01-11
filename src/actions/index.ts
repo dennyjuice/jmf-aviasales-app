@@ -10,6 +10,23 @@ export const setSortTickets = (sort: string) => ({
   sort,
 });
 
+export const receiveTickets = (tickets: any) => ({
+  type: 'RECEIVE_TICKETS',
+  tickets,
+});
+
+const getSearchId = () =>
+  fetch('https://front-test.beta.aviasales.ru/search')
+    .then((response) => response.json())
+    .then((json) => json.searchId);
+
+export const fetchTickets = () => (dispatch: Function): Promise<void> =>
+  getSearchId().then((searchId) => {
+    fetch(`https://front-test.beta.aviasales.ru/tickets?searchId=${searchId}`)
+      .then((response) => response.json())
+      .then((json) => dispatch(receiveTickets(json.tickets)));
+  });
+
 export enum StopsFilters {
   SHOW_ALL = 'SHOW_ALL',
   SHOW_NO_STOPS = 'SHOW_NO_STOPS',

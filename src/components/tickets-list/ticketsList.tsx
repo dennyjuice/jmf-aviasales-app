@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Ticket from '../ticket';
 
@@ -7,13 +7,18 @@ import newId from '../../helpers/new-id';
 
 import classes from './ticketsList.module.scss';
 
-const TicketsList = ({ tickets }: ITickets): JSX.Element => (
-  <ul className={classes.tickets}>
-    {tickets.map((ticket: IOneTicket) => (
-      // @ts-ignore
-      <Ticket data={ticket} key={newId('tck')} />
-    ))}
-  </ul>
-);
+const TicketsList: React.FC<ITickets> = ({ tickets, receiveTickets }: ITickets) => {
+  useEffect(() => {
+    receiveTickets();
+  }, [receiveTickets]);
+
+  return (
+    <ul className={classes.tickets}>
+      {tickets.map((ticket: IOneTicket) => (
+        <Ticket ticket={ticket} key={newId('tck')} />
+      ))}
+    </ul>
+  );
+};
 
 export default TicketsList;

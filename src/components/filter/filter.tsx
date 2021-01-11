@@ -5,7 +5,12 @@ import { IFilterLink } from '../../helpers/types';
 import classes from './filter.module.scss';
 // import { StopsFilters } from '../../actions';
 
-const Filter = ({ checkboxes, onChange }: any) => {
+interface IFilterProps {
+  checkboxes: any[];
+  onChange: Function;
+}
+
+const Filter: React.FC<IFilterProps> = ({ checkboxes, onChange }: IFilterProps) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value, event.target.checked, event.target.dataset.filter);
   };

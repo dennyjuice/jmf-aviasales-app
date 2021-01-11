@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import TicketsList from '../components/tickets-list';
 
-import { StopsFilters, Sort } from '../actions';
+import { StopsFilters, Sort, fetchTickets } from '../actions';
 
 import { IOneTicket, IState } from '../helpers/types';
 
@@ -31,4 +31,8 @@ const mapStateToProps = (state: IState) => ({
   tickets: getVisibleTickets(state.tickets, state.stopsFilter.filter, state.sortTickets),
 });
 
-export default connect(mapStateToProps)(TicketsList);
+const mapDispatchToProps = (dispatch: Function) => ({
+  receiveTickets: () => dispatch(fetchTickets()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TicketsList);
