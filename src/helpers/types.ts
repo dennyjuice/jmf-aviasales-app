@@ -18,6 +18,7 @@ export interface ISortAction extends IAction {
 
 export interface ITickets {
   tickets: Array<IOneTicket>;
+  receiveTickets: Function;
 }
 
 export interface IOneTicket {

@@ -15,7 +15,6 @@ export const receiveTickets = (tickets: any) => ({
   tickets,
 });
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const getSearchId = () =>
   fetch('https://front-test.beta.aviasales.ru/search')
     .then((response) => response.json())
