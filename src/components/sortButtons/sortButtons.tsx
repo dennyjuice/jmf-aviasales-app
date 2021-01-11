@@ -3,7 +3,12 @@ import { Sort } from '../../actions';
 
 import classes from './sortButtons.module.scss';
 
-const SortButtons = ({ sort, onChangeSort }: any) => (
+interface ISortButtonsProps {
+  sort: string;
+  onChangeSort: Function;
+}
+
+const SortButtons: React.FC<ISortButtonsProps> = ({ sort, onChangeSort }: ISortButtonsProps) => (
   <div className={classes.tabs}>
     <button
       type="button"
