@@ -10,8 +10,12 @@ export const setSortTickets = (sort: string) => ({
   sort,
 });
 
-export const receiveTickets = (tickets: any) => ({
+export const receiveTickets = () => ({
   type: 'RECEIVE_TICKETS',
+});
+
+export const loadedTickets = (tickets: any) => ({
+  type: 'LOADED_TICKETS',
   tickets,
 });
 
@@ -20,12 +24,14 @@ const getSearchId = () =>
     .then((response) => response.json())
     .then((json) => json.searchId);
 
-export const fetchTickets = () => (dispatch: Function): Promise<void> =>
+export const fetchTickets = () => (dispatch: Function): void => {
+  dispatch(receiveTickets());
   getSearchId().then((searchId) => {
     fetch(`https://front-test.beta.aviasales.ru/tickets?searchId=${searchId}`)
       .then((response) => response.json())
-      .then((json) => dispatch(receiveTickets(json.tickets)));
+      .then((json) => dispatch(loadedTickets(json.tickets)));
   });
+};
 
 export enum StopsFilters {
   SHOW_ALL = 'SHOW_ALL',

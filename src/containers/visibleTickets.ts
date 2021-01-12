@@ -28,7 +28,8 @@ const getVisibleTickets = (tickets: Array<IOneTicket>, filter: string, sort: str
 };
 
 const mapStateToProps = (state: IState) => ({
-  tickets: getVisibleTickets(state.tickets, state.stopsFilter.filter, state.sortTickets),
+  ticketsList: getVisibleTickets(state.tickets.ticketsList, state.stopsFilter.filter, state.sortTickets),
+  loading: state.tickets.loading,
 });
 
 const mapDispatchToProps = (dispatch: Function) => ({
