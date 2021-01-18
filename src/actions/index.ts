@@ -23,21 +23,26 @@ export const loadedTickets = (tickets: any) => ({
 export const fetchTickets = (searchId: string) => async (dispatch: Function): Promise<void> => {
   dispatch(receiveTickets(true));
 
-  const res = await fetch(`https://aviasales-test-api.java-mentor.com/tickets?searchId=${searchId}`);
-  const json = res.ok ? await res.json() : '';
+  try {
+    const res = await fetch(`https://aviasales-test-api.java-mentor.com/tickets?searchId=${searchId}`);
+    const json = res.ok ? await res.json() : '';
 
-  if (!res.ok) {
-    dispatch(fetchTickets(searchId));
-    return;
-  }
+    if (!res.ok) {
+      dispatch(fetchTickets(searchId));
+      return;
+    }
 
-  if (!json.stop) {
+    if (!json.stop) {
+      dispatch(loadedTickets(json.tickets));
+      dispatch(fetchTickets(searchId));
+      return;
+    }
+
     dispatch(loadedTickets(json.tickets));
-    dispatch(fetchTickets(searchId));
+  } catch (err) {
     return;
   }
 
-  dispatch(loadedTickets(json.tickets));
   dispatch(receiveTickets(false));
 };
 
