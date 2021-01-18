@@ -5,12 +5,13 @@ import Ticket from '../ticket';
 
 import { ITickets, IOneTicket } from '../../helpers/types';
 import newId from '../../helpers/new-id';
+import getSearchId from '../../helpers/getSearchId';
 
 import classes from './ticketsList.module.scss';
 
 const TicketsList: React.FC<ITickets> = ({ ticketsList, loading, receiveTickets }: ITickets) => {
   useEffect(() => {
-    receiveTickets();
+    getSearchId().then((searchId) => receiveTickets(searchId));
   }, [receiveTickets]);
 
   return (

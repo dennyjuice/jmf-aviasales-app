@@ -33,7 +33,7 @@ const mapStateToProps = (state: IState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Function) => ({
-  receiveTickets: () => dispatch(fetchTickets()),
+  receiveTickets: (searchId: string) => dispatch(fetchTickets(searchId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TicketsList);

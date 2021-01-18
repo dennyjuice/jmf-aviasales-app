@@ -3,7 +3,8 @@ export interface IAction {
 }
 
 export interface IRequestAction extends IAction {
-  tickets: ITickets;
+  tickets: IOneTicket[];
+  isReceive: boolean;
 }
 
 export interface IFilterAction extends IAction {

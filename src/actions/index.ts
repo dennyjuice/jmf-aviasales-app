@@ -10,8 +10,9 @@ export const setSortTickets = (sort: string) => ({
   sort,
 });
 
-export const receiveTickets = () => ({
+export const receiveTickets = (isReceive: boolean) => ({
   type: 'RECEIVE_TICKETS',
+  isReceive,
 });
 
 export const loadedTickets = (tickets: any) => ({
@@ -19,18 +20,25 @@ export const loadedTickets = (tickets: any) => ({
   tickets,
 });
 
-const getSearchId = () =>
-  fetch('https://front-test.beta.aviasales.ru/search')
-    .then((response) => response.json())
-    .then((json) => json.searchId);
+export const fetchTickets = (searchId: string) => async (dispatch: Function): Promise<void> => {
+  dispatch(receiveTickets(true));
 
-export const fetchTickets = () => (dispatch: Function): void => {
-  dispatch(receiveTickets());
-  getSearchId().then((searchId) => {
-    fetch(`https://front-test.beta.aviasales.ru/tickets?searchId=${searchId}`)
-      .then((response) => response.json())
-      .then((json) => dispatch(loadedTickets(json.tickets)));
-  });
+  const res = await fetch(`https://aviasales-test-api.java-mentor.com/tickets?searchId=${searchId}`);
+  const json = res.ok ? await res.json() : '';
+
+  if (!res.ok) {
+    dispatch(fetchTickets(searchId));
+    return;
+  }
+
+  if (!json.stop) {
+    dispatch(loadedTickets(json.tickets));
+    dispatch(fetchTickets(searchId));
+    return;
+  }
+
+  dispatch(loadedTickets(json.tickets));
+  dispatch(receiveTickets(false));
 };
 
 export enum StopsFilters {

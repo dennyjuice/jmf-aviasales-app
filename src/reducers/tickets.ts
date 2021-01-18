@@ -10,13 +10,12 @@ const tickets = (state = defaultState, action: IRequestAction) => {
     case 'RECEIVE_TICKETS':
       return {
         ...state,
-        loading: true,
+        loading: action.isReceive,
       };
 
     case 'LOADED_TICKETS':
       return {
-        ticketsList: action.tickets,
-        loading: false,
+        ticketsList: [...state.ticketsList, ...action.tickets],
       };
     default:
       return state;
