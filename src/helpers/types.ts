@@ -3,7 +3,8 @@ export interface IAction {
 }
 
 export interface IRequestAction extends IAction {
-  tickets: ITickets;
+  tickets: IOneTicket[];
+  isReceive: boolean;
 }
 
 export interface IFilterAction extends IAction {
@@ -17,7 +18,8 @@ export interface ISortAction extends IAction {
 }
 
 export interface ITickets {
-  tickets: Array<IOneTicket>;
+  ticketsList: Array<IOneTicket>;
+  loading: boolean;
   receiveTickets: Function;
 }
 
@@ -41,9 +43,10 @@ export interface IFilter {
 }
 
 export interface IState {
-  tickets: Array<IOneTicket>;
+  tickets: ITickets;
   stopsFilter: IFilter;
   sortTickets: string;
+  loading: boolean;
 }
 
 export interface IFilterLink {
