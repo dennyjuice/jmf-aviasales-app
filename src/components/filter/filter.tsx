@@ -1,9 +1,8 @@
 import React, { ChangeEvent } from 'react';
 
-import { IFilterLink } from '../../helpers/types';
+import { IFilterLink } from '../../helpers/interfaces';
 
 import classes from './filter.module.scss';
-// import { StopsFilters } from '../../actions';
 
 interface IFilterProps {
   checkboxes: any[];
@@ -12,7 +11,7 @@ interface IFilterProps {
 
 const Filter: React.FC<IFilterProps> = ({ checkboxes, onChange }: IFilterProps) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    onChange(event.target.value, event.target.checked, event.target.dataset.filter);
+    onChange(event.target.value, event.target.checked);
   };
 
   const fLinksElements = checkboxes.map((link: IFilterLink) => (
@@ -23,7 +22,6 @@ const Filter: React.FC<IFilterProps> = ({ checkboxes, onChange }: IFilterProps) 
         name="transfer"
         value={link.value}
         checked={link.isChecked}
-        data-filter={link.filterData}
         onChange={handleChange}
       />
       <label htmlFor={link.value}> {link.label}</label>
