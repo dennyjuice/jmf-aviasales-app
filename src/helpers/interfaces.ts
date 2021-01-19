@@ -8,7 +8,6 @@ export interface IRequestAction extends IAction {
 }
 
 export interface IFilterAction extends IAction {
-  filter: string;
   value: string;
   checked: boolean;
 }
@@ -20,6 +19,7 @@ export interface ISortAction extends IAction {
 export interface ITickets {
   ticketsList: Array<IOneTicket>;
   loading: boolean;
+  fetchTickets: Function;
   receiveTickets: Function;
 }
 

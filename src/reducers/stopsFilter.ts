@@ -1,6 +1,4 @@
-import { StopsFilters } from '../actions';
-
-import { IFilterAction } from '../helpers/types';
+import { IFilterAction } from '../helpers/interfaces';
 
 enum CheckBoxes {
   ALL = 'all',
@@ -12,13 +10,12 @@ enum CheckBoxes {
 
 const defaultState = {
   checkboxes: [
-    { value: CheckBoxes.ALL, label: 'Все', filterData: StopsFilters.SHOW_ALL, isChecked: false },
-    { value: CheckBoxes.NONE, label: 'Без пересадок', filterData: StopsFilters.SHOW_NO_STOPS, isChecked: true },
-    { value: CheckBoxes.ONE, label: '1 пересадка', filterData: StopsFilters.SHOW_ONE_STOP, isChecked: false },
-    { value: CheckBoxes.TWO, label: '2 пересадки', filterData: StopsFilters.SHOW_TWO_STOPS, isChecked: false },
-    { value: CheckBoxes.THREE, label: '3 пересадки', filterData: StopsFilters.SHOW_THREE_STOPS, isChecked: false },
+    { value: CheckBoxes.ALL, label: 'Все', isChecked: false },
+    { value: CheckBoxes.NONE, label: 'Без пересадок', isChecked: true },
+    { value: CheckBoxes.ONE, label: '1 пересадка', isChecked: false },
+    { value: CheckBoxes.TWO, label: '2 пересадки', isChecked: false },
+    { value: CheckBoxes.THREE, label: '3 пересадки', isChecked: false },
   ],
-  filter: StopsFilters.SHOW_ALL,
 };
 
 const checkboxCheck = (checkboxes: Array<any>, value?: string, checked?: boolean): Array<any> => {
@@ -44,7 +41,6 @@ const StopsFilter = (state = defaultState, action: IFilterAction) => {
       return {
         ...state,
         checkboxes: checkboxCheck(state.checkboxes, action.value, action.checked),
-        filter: action.filter,
       };
     default:
       return state;

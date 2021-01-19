@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IOneTicket, ITicketSegment } from '../../helpers/types';
+import { IOneTicket, ITicketSegment } from '../../helpers/interfaces';
 import newId from '../../helpers/new-id';
 
 import classes from './ticket.module.scss';
@@ -8,6 +8,25 @@ import classes from './ticket.module.scss';
 interface ITicketProps {
   ticket: IOneTicket;
 }
+
+const formatStops = (stops: number): string => {
+  if (stops === 0) return `${stops} пересадок`;
+  return stops === 1 ? `${stops} пересадка` : `${stops} пересадки`;
+};
+
+const formatDuration = (duration: number): string => {
+  const hours = Math.trunc(duration / 60);
+  const minutes = duration % 60;
+  return `${hours}ч ${minutes}м`;
+};
+
+const formatDate = (dateStr: string, duration: number): string => {
+  const date = new Date(dateStr);
+  const arrivalDate = new Date(date.getTime() + duration * 60000);
+  const depTime = `${date.getHours()}:${date.getMinutes()}`;
+  const arrTime = `${arrivalDate.getHours()}:${arrivalDate.getMinutes()}`;
+  return `${depTime} - ${arrTime}`;
+};
 
 const Ticket: React.FC<ITicketProps> = ({ ticket }: ITicketProps) => (
   <li className={classes.ticket}>
@@ -22,15 +41,15 @@ const Ticket: React.FC<ITicketProps> = ({ ticket }: ITicketProps) => (
         <div className={classes['ticket-info-block']}>
           <span className={classes['ticket-info-block_head']}>{`${item.origin} - ${item.destination}`}</span>
           <br />
-          <span className={classes['ticket-info-block_desc']}>10:45 – 08:00</span>
+          <span className={classes['ticket-info-block_desc']}>{formatDate(item.date, item.duration)}</span>
         </div>
         <div className={classes['ticket-info-block']}>
           <span className={classes['ticket-info-block_head']}>В пути</span>
           <br />
-          <span className={classes['ticket-info-block_desc']}>{item.duration}</span>
+          <span className={classes['ticket-info-block_desc']}>{formatDuration(item.duration)}</span>
         </div>
         <div className={classes['ticket-info-block']}>
-          <span className={classes['ticket-info-block_head']}>{`${item.stops.length} пересадки`}</span>
+          <span className={classes['ticket-info-block_head']}>{formatStops(item.stops.length)}</span>
           <br />
           <span className={classes['ticket-info-block_desc']}>{item.stops.join(', ')}</span>
         </div>

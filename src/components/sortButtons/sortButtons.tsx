@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sort } from '../../actions';
+import { Sort } from '../../helpers/constants';
 
 import classes from './sortButtons.module.scss';
 

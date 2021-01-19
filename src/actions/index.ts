@@ -1,6 +1,7 @@
-export const setStopsFilter = (value: string, checked: boolean, filter: string) => ({
+import { API_URL } from '../helpers/constants';
+
+export const setStopsFilter = (value: string, checked: boolean) => ({
   type: 'SET_STOPS_FILTER',
-  filter,
   value,
   checked,
 });
@@ -21,10 +22,8 @@ export const loadedTickets = (tickets: any) => ({
 });
 
 export const fetchTickets = (searchId: string) => async (dispatch: Function): Promise<void> => {
-  dispatch(receiveTickets(true));
-
   try {
-    const res = await fetch(`https://aviasales-test-api.java-mentor.com/tickets?searchId=${searchId}`);
+    const res = await fetch(`${API_URL}/tickets?searchId=${searchId}`);
     const json = res.ok ? await res.json() : '';
 
     if (!res.ok) {
@@ -38,23 +37,13 @@ export const fetchTickets = (searchId: string) => async (dispatch: Function): Pr
       return;
     }
 
-    dispatch(loadedTickets(json.tickets));
+    if (json.stop) {
+      dispatch(loadedTickets(json.tickets));
+      dispatch(receiveTickets(false));
+      return;
+    }
   } catch (err) {
-    return;
+    // eslint-disable-next-line consistent-return
+    return err;
   }
-
-  dispatch(receiveTickets(false));
 };
-
-export enum StopsFilters {
-  SHOW_ALL = 'SHOW_ALL',
-  SHOW_NO_STOPS = 'SHOW_NO_STOPS',
-  SHOW_ONE_STOP = 'SHOW_ONE_STOP',
-  SHOW_TWO_STOPS = 'SHOW_TWO_STOPS',
-  SHOW_THREE_STOPS = 'SHOW_THREE_STOPS',
-}
-
-export enum Sort {
-  CHEAPER = 'SORT_CHEAPER',
-  FASTER = 'SORT_FASTER',
-}

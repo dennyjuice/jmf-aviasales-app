@@ -1,4 +1,4 @@
-import { IRequestAction } from '../helpers/types';
+import { IRequestAction } from '../helpers/interfaces';
 
 const defaultState = {
   ticketsList: [],
@@ -16,6 +16,7 @@ const tickets = (state = defaultState, action: IRequestAction) => {
     case 'LOADED_TICKETS':
       return {
         ticketsList: [...state.ticketsList, ...action.tickets],
+        loading: state.loading,
       };
     default:
       return state;
