@@ -1,4 +1,4 @@
-import { API_URL } from '../helpers/constants';
+import { API_URL } from '../../helpers/constants';
 
 export const setStopsFilter = (value: string, checked: boolean) => ({
   type: 'SET_STOPS_FILTER',

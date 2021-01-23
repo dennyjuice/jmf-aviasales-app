@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import ContentLoader from 'react-content-loader';
 
-import Ticket from '../ticket';
+import Ticket from '../Ticket';
 
 import { ITickets, IOneTicket } from '../../helpers/interfaces';
 import newId from '../../helpers/new-id';
 import getSearchId from '../../helpers/getSearchId';
 
-import classes from './ticketsList.module.scss';
+import classes from './TicketsList.module.scss';
 
 const TicketsList: React.FC<ITickets> = ({ ticketsList, loading, fetchTickets, receiveTickets }: ITickets) => {
   useEffect(() => {

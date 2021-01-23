@@ -1,5 +1,5 @@
-import { ISortAction } from '../helpers/interfaces';
-import { Sort } from '../helpers/constants';
+import { ISortAction } from '../../helpers/interfaces';
+import { Sort } from '../../helpers/constants';
 
 const sortTickets = (state = Sort.CHEAPER, action: ISortAction) => {
   switch (action.type) {

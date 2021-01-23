@@ -1,4 +1,4 @@
-import { IFilterAction } from '../helpers/interfaces';
+import { IFilterAction } from '../../helpers/interfaces';
 
 enum CheckBoxes {
   ALL = 'all',

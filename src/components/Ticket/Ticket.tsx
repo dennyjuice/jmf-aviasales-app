@@ -3,7 +3,7 @@ import React from 'react';
 import { IOneTicket, ITicketSegment } from '../../helpers/interfaces';
 import newId from '../../helpers/new-id';
 
-import classes from './ticket.module.scss';
+import classes from './Ticket.module.scss';
 
 interface ITicketProps {
   ticket: IOneTicket;

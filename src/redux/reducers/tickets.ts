@@ -1,4 +1,4 @@
-import { IRequestAction } from '../helpers/interfaces';
+import { IRequestAction } from '../../helpers/interfaces';
 
 const defaultState = {
   ticketsList: [],

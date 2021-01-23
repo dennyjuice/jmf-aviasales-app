@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
-import TicketsList from '../components/tickets-list';
+import TicketsList from '../../components/TicketsList';
 
-import { Sort } from '../helpers/constants';
+import { Sort } from '../../helpers/constants';
 import { fetchTickets, receiveTickets } from '../actions';
 
-import { IOneTicket, IState } from '../helpers/interfaces';
+import { IOneTicket, IState } from '../../helpers/interfaces';
 
 const getVisibleTickets = (tickets: Array<IOneTicket>, checkboxes: any[], sort: string) => {
   const sortedTickets = tickets.sort((first, second) => {
