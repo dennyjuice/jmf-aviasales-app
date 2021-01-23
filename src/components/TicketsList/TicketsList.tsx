@@ -44,9 +44,12 @@ const TicketsList: React.FC<ITickets> = ({
       {ticketsList.map((ticket: IOneTicket) => (
         <Ticket ticket={ticket} key={newId('tck')} />
       ))}
-      <button type="button" onClick={() => showMoreTickets()} className={classes.showMore}>
-        Показать еще
-      </button>
+
+      {ticketsList.length !== 0 && (
+        <button type="button" onClick={() => showMoreTickets()} className={classes.showMore}>
+          Показать еще
+        </button>
+      )}
     </ul>
   );
 };
