@@ -45,17 +45,14 @@ const Ticket: React.FC<ITicketProps> = ({ ticket }: ITicketProps) => (
       <div className={classes['ticket-direction']} key={newId('seg')}>
         <div className={classes['ticket-info-block']}>
           <span className={classes['ticket-info-block_head']}>{`${item.origin} - ${item.destination}`}</span>
-          <br />
           <span className={classes['ticket-info-block_desc']}>{formatDate(item.date, item.duration)}</span>
         </div>
         <div className={classes['ticket-info-block']}>
           <span className={classes['ticket-info-block_head']}>В пути</span>
-          <br />
           <span className={classes['ticket-info-block_desc']}>{formatDuration(item.duration)}</span>
         </div>
         <div className={classes['ticket-info-block']}>
           <span className={classes['ticket-info-block_head']}>{formatStops(item.stops.length)}</span>
-          <br />
           <span className={classes['ticket-info-block_desc']}>{item.stops.join(', ')}</span>
         </div>
       </div>
