@@ -24,6 +24,8 @@ export interface ITickets {
   loading: boolean;
   fetchTickets: Function;
   receiveTickets: Function;
+  showMoreTickets: Function;
+  ticketsNumber?: number;
 }
 
 export interface IOneTicket {

@@ -1,4 +1,11 @@
-import { API_URL, SET_STOPS_FILTER, SET_SORT_TICKETS, RECEIVE_TICKETS, LOADED_TICKETS } from '../../helpers/constants';
+import {
+  API_URL,
+  SET_STOPS_FILTER,
+  SET_SORT_TICKETS,
+  RECEIVE_TICKETS,
+  LOADED_TICKETS,
+  SHOW_MORE_TICKETS,
+} from '../../helpers/constants';
 import { IFilterAction, ILoadAction, IOneTicket, IReceiveAction, ISortAction } from '../../helpers/interfaces';
 
 export const setStopsFilter = (value: string, checked: boolean): IFilterAction => ({
@@ -20,6 +27,10 @@ export const receiveTickets = (isReceive: boolean): IReceiveAction => ({
 export const loadedTickets = (tickets: IOneTicket[]): ILoadAction => ({
   type: LOADED_TICKETS,
   tickets,
+});
+
+export const showMoreTickets = () => ({
+  type: SHOW_MORE_TICKETS,
 });
 
 export const fetchTickets = (searchId: string) => async (dispatch: Function): Promise<void> => {

@@ -41,6 +41,19 @@ main {
   grid-area: main;
 }
 
+button {
+  width: 50%;
+  height: 50px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: $fontSize;
+  font-weight: 600;
+  text-transform: uppercase;
+  outline: none;
+  background-color: $bgBlocksColor;
+  border: 1px solid #DFE5EC;
+  cursor: pointer;
+}
+
 @media screen and (max-width: $widthContainer) {
   .container {
     padding: 0 1em;

@@ -9,7 +9,13 @@ import getSearchId from '../../helpers/getSearchId';
 
 import classes from './TicketsList.module.scss';
 
-const TicketsList: React.FC<ITickets> = ({ ticketsList, loading, fetchTickets, receiveTickets }: ITickets) => {
+const TicketsList: React.FC<ITickets> = ({
+  ticketsList,
+  loading,
+  fetchTickets,
+  receiveTickets,
+  showMoreTickets,
+}: ITickets) => {
   useEffect(() => {
     receiveTickets(true);
     getSearchId().then((searchId) => fetchTickets(searchId));
@@ -38,6 +44,9 @@ const TicketsList: React.FC<ITickets> = ({ ticketsList, loading, fetchTickets, r
       {ticketsList.map((ticket: IOneTicket) => (
         <Ticket ticket={ticket} key={newId('tck')} />
       ))}
+      <button type="button" onClick={() => showMoreTickets()} className={classes.showMore}>
+        Показать еще
+      </button>
     </ul>
   );
 };
