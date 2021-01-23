@@ -1,4 +1,5 @@
 import { IFilterAction } from '../../helpers/interfaces';
+import { SET_STOPS_FILTER } from '../../helpers/constants';
 
 enum CheckBoxes {
   ALL = 'all',
@@ -37,7 +38,7 @@ const checkboxCheck = (checkboxes: Array<any>, value?: string, checked?: boolean
 
 const StopsFilter = (state = defaultState, action: IFilterAction) => {
   switch (action.type) {
-    case 'SET_STOPS_FILTER':
+    case SET_STOPS_FILTER:
       return {
         ...state,
         checkboxes: checkboxCheck(state.checkboxes, action.value, action.checked),

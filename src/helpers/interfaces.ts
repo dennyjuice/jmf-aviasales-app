@@ -2,9 +2,12 @@ export interface IAction {
   type: string;
 }
 
-export interface IRequestAction extends IAction {
+export interface IReceiveAction extends IAction {
+  isReceive?: boolean;
+}
+
+export interface ILoadAction extends IReceiveAction {
   tickets: IOneTicket[];
-  isReceive: boolean;
 }
 
 export interface IFilterAction extends IAction {

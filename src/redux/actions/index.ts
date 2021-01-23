@@ -1,23 +1,24 @@
-import { API_URL } from '../../helpers/constants';
+import { API_URL, SET_STOPS_FILTER, SET_SORT_TICKETS, RECEIVE_TICKETS, LOADED_TICKETS } from '../../helpers/constants';
+import { IFilterAction, ILoadAction, IOneTicket, IReceiveAction, ISortAction } from '../../helpers/interfaces';
 
-export const setStopsFilter = (value: string, checked: boolean) => ({
-  type: 'SET_STOPS_FILTER',
+export const setStopsFilter = (value: string, checked: boolean): IFilterAction => ({
+  type: SET_STOPS_FILTER,
   value,
   checked,
 });
 
-export const setSortTickets = (sort: string) => ({
-  type: 'SET_SORT_TICKETS',
+export const setSortTickets = (sort: string): ISortAction => ({
+  type: SET_SORT_TICKETS,
   sort,
 });
 
-export const receiveTickets = (isReceive: boolean) => ({
-  type: 'RECEIVE_TICKETS',
+export const receiveTickets = (isReceive: boolean): IReceiveAction => ({
+  type: RECEIVE_TICKETS,
   isReceive,
 });
 
-export const loadedTickets = (tickets: any) => ({
-  type: 'LOADED_TICKETS',
+export const loadedTickets = (tickets: IOneTicket[]): ILoadAction => ({
+  type: LOADED_TICKETS,
   tickets,
 });
 
