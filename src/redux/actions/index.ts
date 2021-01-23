@@ -38,11 +38,8 @@ export const fetchTickets = (searchId: string) => async (dispatch: Function): Pr
       return;
     }
 
-    if (json.stop) {
-      dispatch(loadedTickets(json.tickets));
-      dispatch(receiveTickets(false));
-      return;
-    }
+    dispatch(loadedTickets(json.tickets));
+    dispatch(receiveTickets(false));
   } catch (err) {
     // eslint-disable-next-line consistent-return
     return err;

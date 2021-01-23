@@ -9,9 +9,14 @@ interface ITicketProps {
   ticket: IOneTicket;
 }
 
+enum StopsEnum {
+  NO_STOPS,
+  ONE_STOP,
+}
+
 const formatStops = (stops: number): string => {
-  if (stops === 0) return `${stops} пересадок`;
-  return stops === 1 ? `${stops} пересадка` : `${stops} пересадки`;
+  if (stops === StopsEnum.NO_STOPS) return `${stops} пересадок`;
+  return stops === StopsEnum.ONE_STOP ? `${stops} пересадка` : `${stops} пересадки`;
 };
 
 const formatDuration = (duration: number): string => {
