@@ -2,7 +2,7 @@ import React, { ChangeEvent } from 'react';
 
 import { IFilterLink } from '../../helpers/interfaces';
 
-import classes from './filter.module.scss';
+import classes from './Filter.module.scss';
 
 interface IFilterProps {
   checkboxes: any[];

@@ -1,0 +1,18 @@
+.loader{
+  margin-bottom: 20px;
+}
+
+.infoText {
+  text-transform: none;
+  font-weight: 400;
+}
+
+.showMore {
+  display: block;
+  margin: 0 auto 20px;
+  border-radius: 5px;
+  &:hover {
+    background-color: #F3F7FA;
+  }
+
+}

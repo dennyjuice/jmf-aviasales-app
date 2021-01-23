@@ -3,15 +3,20 @@ import React from 'react';
 import { IOneTicket, ITicketSegment } from '../../helpers/interfaces';
 import newId from '../../helpers/new-id';
 
-import classes from './ticket.module.scss';
+import classes from './Ticket.module.scss';
 
 interface ITicketProps {
   ticket: IOneTicket;
 }
 
+enum StopsEnum {
+  NO_STOPS,
+  ONE_STOP,
+}
+
 const formatStops = (stops: number): string => {
-  if (stops === 0) return `${stops} пересадок`;
-  return stops === 1 ? `${stops} пересадка` : `${stops} пересадки`;
+  if (stops === StopsEnum.NO_STOPS) return `${stops} пересадок`;
+  return stops === StopsEnum.ONE_STOP ? `${stops} пересадка` : `${stops} пересадки`;
 };
 
 const formatDuration = (duration: number): string => {
@@ -40,17 +45,14 @@ const Ticket: React.FC<ITicketProps> = ({ ticket }: ITicketProps) => (
       <div className={classes['ticket-direction']} key={newId('seg')}>
         <div className={classes['ticket-info-block']}>
           <span className={classes['ticket-info-block_head']}>{`${item.origin} - ${item.destination}`}</span>
-          <br />
           <span className={classes['ticket-info-block_desc']}>{formatDate(item.date, item.duration)}</span>
         </div>
         <div className={classes['ticket-info-block']}>
           <span className={classes['ticket-info-block_head']}>В пути</span>
-          <br />
           <span className={classes['ticket-info-block_desc']}>{formatDuration(item.duration)}</span>
         </div>
         <div className={classes['ticket-info-block']}>
           <span className={classes['ticket-info-block_head']}>{formatStops(item.stops.length)}</span>
-          <br />
           <span className={classes['ticket-info-block_desc']}>{item.stops.join(', ')}</span>
         </div>
       </div>

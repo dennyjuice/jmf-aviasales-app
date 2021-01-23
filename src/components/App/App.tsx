@@ -1,8 +1,8 @@
 import React from 'react';
 
-import FilterContainer from '../../containers/filterContainer';
-import VisibleTickets from '../../containers/visibleTickets';
-import SortContainer from '../../containers/sortContainer';
+import FilterContainer from '../../redux/containers/FilterContainer';
+import VisibleTickets from '../../redux/containers/VisibleTickets';
+import SortContainer from '../../redux/containers/SortContainer';
 
 import classes from './App.module.scss';
 import logo from './Logo.svg';

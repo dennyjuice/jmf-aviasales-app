@@ -1,12 +1,17 @@
 import { connect } from 'react-redux';
-import TicketsList from '../components/tickets-list';
+import TicketsList from '../../components/TicketsList';
 
-import { Sort } from '../helpers/constants';
-import { fetchTickets, receiveTickets } from '../actions';
+import { Sort } from '../../helpers/constants';
+import { fetchTickets, receiveTickets, showMoreTickets } from '../actions';
 
-import { IOneTicket, IState } from '../helpers/interfaces';
+import { IOneTicket, IState } from '../../helpers/interfaces';
 
-const getVisibleTickets = (tickets: Array<IOneTicket>, checkboxes: any[], sort: string) => {
+const getVisibleTickets = (
+  tickets: Array<IOneTicket>,
+  checkboxes: any[],
+  sort: string,
+  ticketsNumber: number | undefined,
+) => {
   const sortedTickets = tickets.sort((first, second) => {
     if (sort === Sort.CHEAPER) return first.price - second.price;
 
@@ -29,17 +34,23 @@ const getVisibleTickets = (tickets: Array<IOneTicket>, checkboxes: any[], sort: 
     );
   });
 
-  return filterTickets.slice(0, 5);
+  return filterTickets.slice(0, ticketsNumber);
 };
 
 const mapStateToProps = (state: IState) => ({
-  ticketsList: getVisibleTickets(state.tickets.ticketsList, state.stopsFilter.checkboxes, state.sortTickets),
+  ticketsList: getVisibleTickets(
+    state.tickets.ticketsList,
+    state.stopsFilter.checkboxes,
+    state.sortTickets,
+    state.tickets.ticketsNumber,
+  ),
   loading: state.tickets.loading,
 });
 
 const mapDispatchToProps = (dispatch: Function) => ({
   fetchTickets: (searchId: string) => dispatch(fetchTickets(searchId)),
   receiveTickets: (isLoading: boolean) => dispatch(receiveTickets(isLoading)),
+  showMoreTickets: () => dispatch(showMoreTickets()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TicketsList);

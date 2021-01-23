@@ -1,7 +1,7 @@
 import React from 'react';
 import { Sort } from '../../helpers/constants';
 
-import classes from './sortButtons.module.scss';
+import classes from './SortButtons.module.scss';
 
 interface ISortButtonsProps {
   sort: string;
