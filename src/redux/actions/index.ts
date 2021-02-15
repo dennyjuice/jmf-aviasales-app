@@ -5,8 +5,9 @@ import {
   RECEIVE_TICKETS,
   LOADED_TICKETS,
   SHOW_MORE_TICKETS,
+  FETCH_ERROR,
 } from '../../helpers/constants';
-import { IFilterAction, ILoadAction, IOneTicket, IReceiveAction, ISortAction } from '../../helpers/interfaces';
+import { IAction, IFilterAction, ILoadAction, IOneTicket, IReceiveAction, ISortAction } from '../../helpers/interfaces';
 
 export const setStopsFilter = (value: string, checked: boolean): IFilterAction => ({
   type: SET_STOPS_FILTER,
@@ -29,17 +30,30 @@ export const loadedTickets = (tickets: IOneTicket[]): ILoadAction => ({
   tickets,
 });
 
+export const fetchError = (): IAction => ({
+  type: FETCH_ERROR,
+});
+
 export const showMoreTickets = () => ({
   type: SHOW_MORE_TICKETS,
 });
 
-export const fetchTickets = (searchId: string) => async (dispatch: Function): Promise<void> => {
+export const fetchTickets = (searchId: string, curRetries = 0) => async (dispatch: Function): Promise<void> => {
   try {
     const res = await fetch(`${API_URL}/tickets?searchId=${searchId}`);
     const json = res.ok ? await res.json() : '';
 
     if (!res.ok) {
-      dispatch(fetchTickets(searchId));
+      const wait = 2 ** curRetries * 100;
+
+      if (curRetries < 5) {
+        setTimeout(() => {
+          dispatch(fetchTickets(searchId, curRetries + 1));
+        }, wait);
+      } else {
+        dispatch(receiveTickets(false));
+        dispatch(fetchError());
+      }
       return;
     }
 
@@ -52,7 +66,7 @@ export const fetchTickets = (searchId: string) => async (dispatch: Function): Pr
     dispatch(loadedTickets(json.tickets));
     dispatch(receiveTickets(false));
   } catch (err) {
-    // eslint-disable-next-line consistent-return
-    return err;
+    dispatch(fetchError());
+    dispatch(receiveTickets(false));
   }
 };

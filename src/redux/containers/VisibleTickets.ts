@@ -45,6 +45,7 @@ const mapStateToProps = (state: IState) => ({
     state.tickets.ticketsNumber,
   ),
   loading: state.tickets.loading,
+  isError: state.tickets.isError,
 });
 
 const mapDispatchToProps = (dispatch: Function) => ({

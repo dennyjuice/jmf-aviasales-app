@@ -22,6 +22,7 @@ export interface ISortAction extends IAction {
 export interface ITickets {
   ticketsList: Array<IOneTicket>;
   loading: boolean;
+  isError: boolean;
   fetchTickets: Function;
   receiveTickets: Function;
   showMoreTickets: Function;
@@ -52,6 +53,7 @@ export interface IState {
   stopsFilter: IFilter;
   sortTickets: string;
   loading: boolean;
+  isError: boolean;
 }
 
 export interface IFilterLink {

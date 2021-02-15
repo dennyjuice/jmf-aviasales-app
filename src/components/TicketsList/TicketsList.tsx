@@ -12,6 +12,7 @@ import classes from './TicketsList.module.scss';
 const TicketsList: React.FC<ITickets> = ({
   ticketsList,
   loading,
+  isError,
   fetchTickets,
   receiveTickets,
   showMoreTickets,
@@ -23,7 +24,7 @@ const TicketsList: React.FC<ITickets> = ({
 
   return (
     <ul className={classes.tickets}>
-      {ticketsList.length === 0 && (
+      {ticketsList.length === 0 && !isError && (
         <p className={classes.infoText}>Рейсов, подходящих под заданные фильтры, не найдено</p>
       )}
 
@@ -40,6 +41,8 @@ const TicketsList: React.FC<ITickets> = ({
           <rect x="0" y="0" rx="5" ry="5" width="500" height="188" />
         </ContentLoader>
       )}
+
+      {isError && <p className={classes.error}>Возникла непредвиденная ошибка</p>}
 
       {ticketsList.map((ticket: IOneTicket) => (
         <Ticket ticket={ticket} key={newId('tck')} />

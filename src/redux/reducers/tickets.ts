@@ -1,10 +1,11 @@
 import { ILoadAction } from '../../helpers/interfaces';
-import { LOADED_TICKETS, RECEIVE_TICKETS, SHOW_MORE_TICKETS } from '../../helpers/constants';
+import { FETCH_ERROR, LOADED_TICKETS, RECEIVE_TICKETS, SHOW_MORE_TICKETS } from '../../helpers/constants';
 
 const defaultState = {
   ticketsList: [],
   loading: false,
   ticketsNumber: 5,
+  isError: false,
 };
 
 const tickets = (state = defaultState, action: ILoadAction) => {
@@ -26,6 +27,12 @@ const tickets = (state = defaultState, action: ILoadAction) => {
       return {
         ...state,
         ticketsNumber: state.ticketsNumber + 5,
+      };
+
+    case FETCH_ERROR:
+      return {
+        ...state,
+        isError: true,
       };
 
     default:
